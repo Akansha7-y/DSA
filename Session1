@@ -1,1 +1,75 @@
+////////////////////////////////////////////////////////////////////////////////////////
+// print all subsets 78 
 
+class solution{
+    static void subset(String s, int index, String current){
+        if(index == s.length()){
+            System.out.println(current);
+            return;
+        }
+        subset(s, index+1, current); // dont take character
+        subset(s, index+1, current+s.charAt(index)); //take character
+    }
+    public static void main(String[] args){
+            String s = "abcde";
+            subset(s, 0,  " ");
+    }
+}
+
+/////////////////////////////////////////////////////////////////////////////////////////
+// Permutations of a given string  leetcode 46
+
+class main{
+    static void permutations(char[] arr, int index){
+        if(index==arr.length){
+            System.out.println(new String(arr));
+            return;        
+    }
+    for(int i=index; i<arr.length; i++){
+        char temp= arr[index];
+        arr[index]= arr[i];
+        arr[i]= temp;
+
+        permutations(arr,index+1);
+        temp = arr[index];
+        arr[index]= arr[i];
+        arr[i] = temp;
+    }
+}
+public static void main(String[] args){
+    String s = "abc";
+    permutations(s.toCharArray(), 0);
+}
+}
+
+
+////////////////////////////////////////////////////////////////////////////////
+
+
+// find all unique subsets geeks for geeks
+//you are given an array arr[] of positive integers. The task is to find all distinct subsets of the given array. Note that the solution set must not contain duplicate subsets.
+
+// arr[]=[1,5,6]
+ //output=[[],[1],[1,5],[1,5,6],[1,6],[5],[5,6],[6]]
+
+
+
+import java.util.*;
+ class main {
+    static void solution(int[] nums, int index, List<Integer> current, List<List<Integer>> ans){
+        ans.add(new ArrayList<>(current));
+        for(int i=index; i<nums.length; i++){
+            if(i>index && nums[i] == nums[i-1]) continue; // skip duplicates
+            current.add(nums[i]);
+            solution(nums, i+1, current, ans);
+            current.remove(current.size()-1);}
+        }
+    
+    public static void main(String[] args){
+        int[] nums = {1,5,6};
+        Arrays.sort(nums);                // sort the array to handle duplicates
+        List<List<Integer>> ans = new ArrayList<>();
+        solution(nums, 0, new ArrayList<>(), ans);
+        System.out.println(ans);
+    }
+}
