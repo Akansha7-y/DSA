@@ -1,2 +1,2 @@
 # DSA
-# questions solve for semester 5th 
+# questions of leetcode and gfg solve for semester 5th 
